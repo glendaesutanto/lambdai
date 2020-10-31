@@ -106,9 +106,22 @@ renderSteps s rt (Trace init (step:steps)) =
 
 renderStep :: RendererSpec -> String -> LambdaTerm -> ReductionStep -> String
 renderStep s rt t NoReduction {} =
-  (alignStep s $ renderTerm s t) ++ therefore s ++ rt
+  (alignStep s $ renderTerm s t) ++ therefore s ++ rt ++ renderNumber s (convertToNumber t)
 renderStep s rt t step =
   (alignStep s $ renderTermWithHighlight (Just $ path step) s t) ++ therefore s ++ rt
+
+convertToNumber :: LambdaTerm -> Maybe Int
+convertToNumber (Lambda s (Lambda z remainingTerm)) = convertToNumberHelper remainingTerm
+  where
+    convertToNumberHelper (Variable v) | v == z = Just 0
+    convertToNumberHelper (Application (Variable v) f) | v == s = (+1) <$> convertToNumberHelper f
+    convertToNumberHelper _ = Nothing 
+convertToNumber _ = Nothing
+
+renderNumber :: RendererSpec -> Maybe Int -> String
+renderNumber s n = case n of
+  Nothing -> ""
+  Just n -> lineEnd s ++ linePrefix s ++ show n ++ lineEnd s
 
 reductionType :: RendererSpec -> ReductionStep -> String
 reductionType s Beta {} = beta s
