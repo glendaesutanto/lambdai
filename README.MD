@@ -1,6 +1,6 @@
 # Tugas 5 FunPro 2020
 
-## Untuk penjelasan tugas 5 Glenda bisa dilihat ![disini](https://github.com/glendaesutanto/tugas5-funpro2020-lambda-interpreter/blob/master/penjelasan.MD)
+## Untuk penjelasan tugas 5 Glenda bisa dilihat ([disini](https://github.com/glendaesutanto/tugas5-funpro2020-lambda-interpreter/blob/master/penjelasan.MD))
 
 # lambdai — Untyped Lambda Calculus Interpreter
 

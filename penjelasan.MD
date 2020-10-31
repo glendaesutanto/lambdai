@@ -32,4 +32,4 @@ Untuk file ini, saya lakukan perubahan agar bisa mengkonversikan representasi bi
 
 Ide saya adalah, memeriksa term terakhir yang di-outputkan, apakah ia berbentuk representasi bilangan dalam  <b><i>Church's numeral</i></b> atau tidak. Idenya dengan memanfaatkan typeclass `LambdaTerm` pada program ini.
 
-Referensi source code: ![Lihat disini](https://stackoverflow.com/questions/58687538/converting-from-church-encoding-to-numerals)
+Referensi source code: ([Lihat disini](https://stackoverflow.com/questions/58687538/converting-from-church-encoding-to-numerals))
