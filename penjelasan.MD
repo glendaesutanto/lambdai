@@ -22,9 +22,10 @@ Di sini saya melakukan modifikasi untuk meng-handle beberapa kasus, yaitu:
         - Input harus hanya merupakan operasi perkalian (tidak ada operasi penjumlahan), contoh: `1*2*3*4`; atau
         - Input merupakan kombinasi perkalian dan penjumlahan, namun perkalian dibatasi tidak boleh terdiri dari lebih dari dua bilangan berturut-turut, contoh: `1*2+3+4+5*2`
 
-Kasus yang belum sempat di-handle:
+Kasus yang tidak di-handle:
 - Apabila input merupakan kombinasi perkalian infix dan penjumlahan, tidak mengandung karakter `(` maupun `)`, tetapi operasi perkalian bisa terdiri dari lebih dua bilangan berturut-turut, contoh: `1+2*3*4+5`
 - Apabila input merupakan kombinasi perkalian infix dan penjumlahan dan terdapat tanda kurung sehingga <i>precedence</i> yang paling tinggi adalah yang di dalam tanda kurung
+- Bilangan yang di-inputkan lebih dari 9 (lebih dari 1 digit)
 
 
 #### `src/Reducer/Renderer.hs`
