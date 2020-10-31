@@ -1,6 +1,8 @@
-# -*- org -*-
+# Tugas 5 FunPro 2020
 
-#+TITLE: lambdai — Untyped Lambda Calculus Interpreter
+## Untuk penjelasan tugas 5 Glenda bisa dilihat ![disini](https://github.com/glendaesutanto/tugas5-funpro2020-lambda-interpreter/blob/master/penjelasan.MD)
+
+# lambdai — Untyped Lambda Calculus Interpreter
 
 This application tries to reduce arbitrary lambda terms to their
 normal form using either normal oder applicative order. δ- as well as
@@ -9,26 +11,26 @@ to the user.
 
 This application is designed for educational purposes.
 
-* Installation
+## Installation
   This package uses Stack as build system. Therefore you can use the
   following command in the root of the source tree.
 
-  #+BEGIN_SRC sh
+  ```
     stack install
-  #+END_SRC
+  ```
 
-* Usage
-  Invoke by the use of ~stack exec lambdai~ or ~stack exec lambdaid~
-  respectively in the root of the source tree or ~lambdai~ ord
-  ~lambdaid~ respectively if the package is installed.
+## Usage
+  Invoke by the use of `stack exec lambdai` or `stack exec lambdaid`
+  respectively in the root of the source tree or `lambdai` ord
+  `lambdaid` respectively if the package is installed.
 
-** λi Daemon
-   The λi daemon (~lambdaid~) runs on port 3000 by default. Each
+### λi Daemon
+   The λi daemon (`lambdaid`) runs on port 3000 by default. Each
    request is handled as a separate λi session. The reductions
    performed on the server are limited to 3000. The output is rendered
    using MathJax.
 
-** Evaluation Strategies
+### Evaluation Strategies
    λi supports the following four distinct evaluation strategies out
    of the box. All four have in common, that they always prefer
    β-reductions over δ-reductions. This means δ-reductions are only
@@ -54,18 +56,18 @@ This application is designed for educational purposes.
         reductions inside of lambda abstractions are performed. This
         doesn't always find a HNF if it exists.
 
-   In /lambdai/ one may use the ~:strategy <strategy>~ directive to
+   In /lambdai/ one may use the `:strategy <strategy>` directive to
    change the evaluation strategy interactively.
 
-   #+BEGIN_SRC text
+   ```
      <strategy> ::= normalOrder | applicativeOrder | callByName |
       		    callByValue
-   #+END_SRC
+  ```
    
    In /lambdaid/ the evaluation strategy may be changed using the
    respective selection box.
 
-** Evaluation Step Limit
+### Evaluation Step Limit
    The maximum of reductions to be performed by λi may be limited in
    an interactive command line session and are always limited when
    using the web interface.
@@ -73,36 +75,36 @@ This application is designed for educational purposes.
    If the maximum of reductions is set to zero, an infinite amount of
    reductions are performed.
 
-   On the command line the ~:maxSteps <unsigned integer>~ directive
+   On the command line the `:maxSteps <unsigned integer>` directive
    may be used to change this limit.
 
-** Output (command line)
+### Output (command line)
    The two different modes for rendering reduction traces are
    described below.
 
-*** Terminal
+#### Terminal
     Terminal (or command line) is the default output mode. To change
     the output mode to /command line/ use:
 
-    #+BEGIN_SRC text
+    ```
       :render cl
-    #+END_SRC
+    ```
 
-*** LaTeX
+#### LaTeX
     When the LaTeX output mode is used, all traces are rendered as
     LaTeX code. To use the output in your document, you need to place
-    it in a ~math~ environment. And include the ~amsmath~ and ~amssymb~
+    it in a `math` environment. And include the `amsmath` and `amssymb`
     packages.
 
     To change the output mode to /LaTeX/ use:
 
-    #+BEGIN_SRC text
+    ```
       :render latex
-    #+END_SRC
+    ```
 
     Example:
 
-    #+BEGIN_SRC LaTeX
+    ```
       \documentclass{standalone}
 
       \usepackage{amsmath}
@@ -123,12 +125,12 @@ This application is designed for educational purposes.
       \end{math}
 
       \end{document}
-    #+END_SRC
+    ```
 
-* Example Session
-  [[file:doc/example_session_I.png]]
+## Example Session
+  ![ExampleSession](doc/example_session_I.png)
 
-  #+BEGIN_SRC text
+  ```
     Welcome to λi!
     λ> square = \x.* x x
       square = (λx.* x x)
@@ -141,5 +143,3 @@ This application is designed for educational purposes.
     = * (* 5 5) ((λx.* x x) 5)                                                    ∴δ
     = * (* 5 5) (* 5 5)                                                           ∴β
     λ> 
-  #+END_SRC
-
