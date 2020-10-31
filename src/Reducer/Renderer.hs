@@ -110,6 +110,7 @@ renderStep s rt t NoReduction {} =
 renderStep s rt t step =
   (alignStep s $ renderTermWithHighlight (Just $ path step) s t) ++ therefore s ++ rt
 
+-- Fungsi untuk mengkonversikan representasi church's numeral ke angka, apabila compatible
 convertToNumber :: LambdaTerm -> Maybe Int
 convertToNumber (Lambda s (Lambda z remainingTerm)) = convertToNumberHelper remainingTerm
   where
@@ -118,6 +119,7 @@ convertToNumber (Lambda s (Lambda z remainingTerm)) = convertToNumberHelper rema
     convertToNumberHelper _ = Nothing 
 convertToNumber _ = Nothing
 
+-- Fungsi untuk melakukan konversi dari Maybe Int ke String yang akan di-outputkan di layar
 renderNumber :: RendererSpec -> Maybe Int -> String
 renderNumber s n = case n of
   Nothing -> ""
