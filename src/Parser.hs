@@ -47,4 +47,22 @@ lambdaTermNoApp =   (char '(' >> lambdaTerm >>= (\lt -> char ')' >> return lt))
                 <|> variable
 
 lambdaRead :: String -> Either ParseError LambdaTerm
-lambdaRead s = parse (topLevelLambdaTerm >>= (\term -> eof >> return term)) "" s
+lambdaRead s = parse (topLevelLambdaTerm >>= (\term -> eof >> return term)) "" $ process s
+
+process :: [Char] -> [Char]
+process s = concat $ map (\x -> convert x) s
+
+convert :: Char -> [Char]
+convert x
+    | isNumber x = toLambdaExpression (digitToInt x)
+    | x == '+' = "(\\w.(\\y.(\\x.(y(w y x)))))"
+    | x == '*' = "(\\x.(\\y.(\\z.(x(y z)))))"
+    | otherwise = [x]
+
+toLambdaExpression :: Int -> [Char]
+toLambdaExpression n = "(\\s.(\\z." ++ toLambdaExpressionHelper n ++ "))"
+
+toLambdaExpressionHelper :: Int -> [Char]
+toLambdaExpressionHelper 0 = "z"
+toLambdaExpressionHelper 1 = "(s z)"
+toLambdaExpressionHelper n = "(s" ++ toLambdaExpressionHelper (n-1) ++ ")"
